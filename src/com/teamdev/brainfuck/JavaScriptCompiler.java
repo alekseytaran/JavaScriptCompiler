@@ -50,7 +50,6 @@ public class JavaScriptCompiler {
         }
     }
 
-
     public static void main(String[] args) {
 
         final JavaScriptCompiler compiler = new JavaScriptCompiler();

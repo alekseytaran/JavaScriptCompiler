@@ -9,7 +9,7 @@ public class Parser {
     public List<Command> parse(String program) {
 
         final Deque<List<Command>> stack = new ArrayDeque<>();
-        stack.push(new ArrayList<>());
+        stack.push(new ArrayList<Command>());
 
         for (char c : program.toCharArray()) {
 
@@ -35,7 +35,7 @@ public class Parser {
                     break;
                 }
                 case '[': {
-                    stack.push(new ArrayList<>());
+                    stack.push(new ArrayList<Command>());
                     break;
                 }
                 case ']': {
