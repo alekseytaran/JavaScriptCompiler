@@ -1,6 +1,6 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.Command.*;
+import com.teamdev.brainfuck.command.*;
 
 import java.util.*;
 
@@ -53,16 +53,12 @@ public class Parser {
                 }
                 default:
                     throw new IllegalArgumentException("Unknown command: " + c);
-
             }
-
         }
 
         if (stack.size() > 1) {
             throw new IllegalStateException("There are loops that are not closed.");
         }
-
         return stack.pop();
     }
-
 }

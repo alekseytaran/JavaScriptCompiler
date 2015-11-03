@@ -15,7 +15,7 @@
     <build>
         <outputDirectory>out</outputDirectory>
         <finalName>Optimize_BrainfuckCompiler</finalName>
-        <sourceDirectory>src/com/teamdev/brainfuck</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,7 +1,5 @@
 package com.teamdev.brainfuck;
 
-import java.util.Deque;
-
 public class ExecutionContext {
 
     public static final int MEMORY_SIZE = 30000;

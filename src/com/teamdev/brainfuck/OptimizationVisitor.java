@@ -1,10 +1,8 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.Command.*;
+import com.teamdev.brainfuck.command.*;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 public class OptimizationVisitor implements CommandVisitor {
@@ -15,62 +13,45 @@ public class OptimizationVisitor implements CommandVisitor {
         return optimizedCommands;
     }
 
-    @Override
-    public void visit(MoveForwardCommand command) {
+    private void fillInCommandList(Command command, Class currentClass) {
         if (optimizedCommands.isEmpty() ||
-                (optimizedCommands.get(optimizedCommands.size() - 1).getClass() != MoveForwardCommand.class)) {
+                (optimizedCommands.get(optimizedCommands.size() - 1).getClass() != currentClass)) {
             optimizedCommands.add(command);
+        } else {
+            optimizedCommands.remove(command);
         }
 
         optimizedCommands.get(optimizedCommands.size() - 1).incrementCountRepeat();
+    }
 
-
+    @Override
+    public void visit(MoveForwardCommand command) {
+        fillInCommandList(command, MoveForwardCommand.class);
     }
 
     @Override
     public void visit(MoveBackwardCommand command) {
-        if (optimizedCommands.isEmpty() ||
-                optimizedCommands.get(optimizedCommands.size() - 1).getClass() != MoveBackwardCommand.class) {
-            optimizedCommands.add(command);
-        }
-
-        optimizedCommands.get(optimizedCommands.size() - 1).incrementCountRepeat();
+        fillInCommandList(command, MoveBackwardCommand.class);
     }
 
     @Override
     public void visit(IncrementCommand command) {
-        if (optimizedCommands.isEmpty() ||
-                (optimizedCommands.get(optimizedCommands.size() - 1).getClass() != IncrementCommand.class)) {
-            optimizedCommands.add(command);
-        }
-
-        optimizedCommands.get(optimizedCommands.size() - 1).incrementCountRepeat();
+        fillInCommandList(command, IncrementCommand.class);
     }
 
     @Override
     public void visit(DecrementCommand command) {
-        if (optimizedCommands.isEmpty() ||
-                optimizedCommands.get(optimizedCommands.size() - 1).getClass() != DecrementCommand.class) {
-            optimizedCommands.add(command);
-        }
-        optimizedCommands.get(optimizedCommands.size() - 1).incrementCountRepeat();
+        fillInCommandList(command, DecrementCommand.class);
     }
 
     @Override
     public void visit(PrintCommand command) {
-        if (optimizedCommands.isEmpty() ||
-                optimizedCommands.get(optimizedCommands.size() - 1).getClass() != PrintCommand.class) {
-            optimizedCommands.add(command);
-        }
-
-        optimizedCommands.get(optimizedCommands.size() - 1).incrementCountRepeat();
+        fillInCommandList(command, PrintCommand.class);
     }
 
     @Override
     public void visit(LoopCommand command) {
-
         final List<Command> innerCommands = command.getInnerCommands();
-        // todo: optimize!
 
         new LoopCommand(getCommandsInLoop(innerCommands, new OptimizationVisitor()));
         optimizedCommands.add(command);

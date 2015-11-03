@@ -1,6 +1,6 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.Command.Command;
+import com.teamdev.brainfuck.command.Command;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,20 +27,17 @@ public class JavaScriptCompiler {
                 optimizationVisitor.getOptimizedCommands();
 
         // console out!
-//        final ExecutionVisitor executionVisitor = new ExecutionVisitor();
-//        for (Command command : optimizedCommands) {
-//            command.accept(executionVisitor);
-//        }
+        final ExecutionVisitor executionVisitor = new ExecutionVisitor();
+        for (Command command : optimizedCommands) {
+            command.accept(executionVisitor);
+        }
 
-        // todo: generate JavaScript code (implement JavaScript code generation visitor)
         final JavaScriptVisitor javaScriptVisitor = new JavaScriptVisitor();
         for (Command command: optimizedCommands) {
             command.accept(javaScriptVisitor);
         }
 
-        String javaScriptCode = javaScriptVisitor.getPhrases().toString();
-
-//        System.out.println(javaScriptCode);
+        String javaScriptCode = javaScriptVisitor.getJSCode().toString();
 
         try (FileWriter javaScriptFile = new FileWriter(outputJavaScriptFile)) {
             javaScriptFile.write(javaScriptCode);
@@ -55,15 +52,5 @@ public class JavaScriptCompiler {
         final JavaScriptCompiler compiler = new JavaScriptCompiler();
         compiler.compile(PROGRAM, new File("./brainfuck.js"));
 
-        final HtmlFile htmlFile = new HtmlFile();
-        String htmlTemplate = htmlFile.createHtmlFile();
-
-        try (FileWriter fileWriter = new FileWriter(new File("compiler.html"))) {
-            fileWriter.write(htmlTemplate);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
-
 }

@@ -1,4 +1,4 @@
-package com.teamdev.brainfuck.Command;
+package com.teamdev.brainfuck.command;
 
 
 import com.teamdev.brainfuck.CommandVisitor;
