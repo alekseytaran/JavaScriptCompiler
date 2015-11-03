@@ -1,7 +1,5 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.command.*;
-
 public class ExecutionVisitor implements CommandVisitor {
 
     final private ExecutionContext context = new ExecutionContext();

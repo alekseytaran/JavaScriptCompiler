@@ -1,7 +1,5 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.command.*;
-
 import java.util.*;
 
 public class Parser {

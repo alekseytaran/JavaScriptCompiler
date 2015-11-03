@@ -1,7 +1,5 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.command.*;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

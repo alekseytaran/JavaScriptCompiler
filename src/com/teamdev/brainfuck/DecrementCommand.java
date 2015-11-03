@@ -1,7 +1,4 @@
-package com.teamdev.brainfuck.command;
-
-
-import com.teamdev.brainfuck.CommandVisitor;
+package com.teamdev.brainfuck;
 
 public class DecrementCommand implements Command {
 

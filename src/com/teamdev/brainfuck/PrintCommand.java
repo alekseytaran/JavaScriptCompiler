@@ -1,9 +1,6 @@
-package com.teamdev.brainfuck.command;
+package com.teamdev.brainfuck;
 
-
-import com.teamdev.brainfuck.CommandVisitor;
-
-public class MoveBackwardCommand implements Command {
+public class PrintCommand implements Command {
 
     private int counter;
 
@@ -20,5 +17,4 @@ public class MoveBackwardCommand implements Command {
     public int getCounter() {
         return counter;
     }
-
 }

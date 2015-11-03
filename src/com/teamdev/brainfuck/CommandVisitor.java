@@ -1,7 +1,5 @@
 package com.teamdev.brainfuck;
 
-import com.teamdev.brainfuck.command.*;
-
 public interface CommandVisitor {
 
     void visit(MoveForwardCommand command);
